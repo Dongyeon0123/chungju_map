@@ -1,13 +1,324 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>설화 속 충주, 지도에서 만나자!</title>
+<link rel="stylesheet" href="ONLINEMAP.CSS">
+<script defer src="ONLINEMAP.JS"></script>
+<style>
+  /* 전체 페이지 스타일 */
+  body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #fafafa;
+    color: #333;
+    overflow-x: hidden; /* 가로 스크롤 방지 */
+  }
+  
+  /* 컨테이너 스타일 */
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* 헤더 스타일 */
+  .header {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      color: #2f855a;
+      font-size: 2rem;
+      font-weight: bold;
+      padding: 16px 24px;
+      position: absolute;
+      left: 420px;
+      top: 50px;
+  }
+  
+  .header h1 {
+    margin: 0;
+    font-size: 1.3rem;
+  }
+  
+  /* 메뉴 스타일 */
+  .menu {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  .bar {
+    width: 30px;
+    height: 3px;
+    background-color: #fff;
+    margin: 6px 0;
+  }
+  
+  /* 네비게이션 스타일 */
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+  }
+  
+  nav ul li {
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  nav ul li:hover {
+    background-color: #f0f0f0;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+
+  nav ul li a:hover {
+    color: #2f855a;
+  }
+  
+  /* 드롭다운 메뉴 스타일 */
+  .dropdown-content {
+    visibility: hidden; /* 처음에는 보이지 않도록 */
+    opacity: 0; /* 투명하게 시작 */
+    position: absolute;
+    right: 120px;
+    background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    margin-top: -30px;
+    width: 200px;
+    max-height: 0; /* 초기에는 높이가 0 */
+    overflow: hidden; /* 내용이 보이지 않도록 */
+    transition: visibility 0s linear 0.5s, opacity 0.5s linear, max-height 0.5s ease-out; /* transition 적용 */
+    z-index: 1;
+  }
+  
+  .dropdown-content li {
+    font-size: 14px;
+    padding: 10px;
+    white-space: nowrap;
+  }
+  
+  .dropdown-content li:hover {
+    background-color: #eee;
+    color: #2f855a;
+  }
+  
+  /* 드롭다운 활성화 스타일 */
+  .dropdown:hover .dropdown-content {
+      visibility: visible; /* 호버 시 보이도록 */
+      opacity: 1; /* 호버 시 불투명하게 */
+      max-height: 500px; /* 호버 시 최대 높이 설정 */
+      overflow-y: auto; /* 내용이 넘칠 경우 스크롤바 표시 */
+      transition-delay: 0s; /* 호버 시 딜레이 없음 */
+  }
+  
+  /* 메인 콘텐츠 스타일 */
+  .main-content {
+    flex: 1; /* 나머지 공간을 모두 차지하도록 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .map-image {
+    max-width: 60%;
+    max-height: 60%; /* 최대 높이 제한 */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* 푸터 스타일 */
+  footer {
+    background-color: #333;
+    color: #fff;
+    padding: 15px 20px;
+    text-align: center;
+    font-size: 14px;
+  }
+  
+  .organization {
+    margin: 5px 0;
+    font-size: 0.9rem;
+  }
+  .point {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: #2f855a;
+    border-radius: 50%;
+  }
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 35px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 1001;
+    margin-left: 25%;
+}
+
+.hamburger div {
+    width: 100%;
+    height: 3px;
+    background-color: #2f855a;
+    transition: all 0.3s ease-in-out;
+}
+
+.hamburger:hover div:nth-child(1) {
+    width: 50%;
+}
+
+.hamburger:hover div:nth-child(3) {
+    width: 50%;
+}
+  </style>
 </head>
 <body>
-    <h1>Test</h1>
-    <h3>Test two</h3>
-    <h1>text</h1>
+<div class="container">
+  <header class="header">
+    <h1>설화 속 충주, <br>지도에서 만나자!</h1>
+  </header>
+  <main class="main-content">
+    <img src="abcdef.png" alt="충주 지도" class="map-image">
+    <div class="point" style="top: 20%; left: 30%;"></div>
+    <div class="point" style="top: 25%; left: 40%;"></div>
+    <div class="point" style="top: 30%; left: 45%;"></div>
+    <div class="point" style="top: 35%; left: 50%;"></div>
+    <div class="point" style="top: 40%; left: 55%;"></div>
+    <div class="point" style="top: 45%; left: 60%;"></div>
+    <div class="point" style="top: 50%; left: 70%;"></div>
+    <div class="point" style="top: 55%; left: 10%;"></div>
+    <div class="point" style="top: 60%; left: 15%;"></div>
+    <div class="point" style="top: 65%; left: 20%;"></div>
+    <div class="point" style="top: 70%; left: 25%;"></div>
+  </main>
+  <nav class="menu">
+    <ul>
+      <li class="dropdown">
+        <div class="hamburger" onclick="toggleMenu()">
+          <div></div>
+          <div></div>
+          <div></div>
+      </div>
+      </li>
+      <li class="dropdown">
+        <a href="#">전체</a>
+        <ul class="dropdown-content">
+          <li onclick="openPopup('소금호수의 전설', '소금호수의 전설 정보입니다.')">소금호수의 전설</li>
+          <li onclick="openPopup('돗가비', '돗가비의 정보입니다.')">돗가비</li>
+          <li onclick="openPopup('달천강 용과 얼룩소', '달천강 용과 얼룩소 정보입니다.')">달천강 용과 얼룩소</li>
+          <li onclick="openPopup('성벽에 핀 연꽃', '성벽에 핀 연꽃의 정보입니다.')">성벽에 핀 연꽃</li>
+          <li onclick="openPopup('쌍효각', '쌍효각의 정보입니다.')">쌍효각</li>
+          <li onclick="openPopup('소년 임경업과 이무기', '소년 임경업은 단월강에 나타나 마을 사람들을 괴롭히는 이무기를 무찌르기위해 3년간 무예를 갈고 닦는다. 이후 이무기를 불러내 마을 사람들과 힘을 합쳐 이무기를 물리치고 검을 얻는다는 이야기다.<hr><br>관련 도서: 안녕, 설화야 vol.1<br>관련 관광지:임충민공 충렬사(충청북도 충주시 단월동 385-1)<br> 이괄의 난을 진압해 큰 공을 세운 임경업 장군의 초상을 모신 사당이다. 충렬사는 인조 때 임경업 장군(1594~1646)의 위패를 모신 사당이다. 충신 열사를 추모하고 그 영혼을 기리기 위하여 세워졌다. 1679년 충민공 임경업을 모시기 위해 지어졌고, 임경업 장군의 영정이 모셔져 있다.')">소년 임경업과 이무기</li>
+          <li onclick="openPopup('용이 사는 마을', '용이 사는 마을 정보입니다.')">용이 사는 마을</li>
+          <li onclick="openPopup('범바위', '범바위의 정보입니다.')">범바위</li>
+          <li onclick="openPopup('장자늪 이야기', '장자늪 이야기의 정보입니다.')">장자늪 이야기</li>
+          <li onclick="openPopup('부채고개', '부채고개의 정보입니다.')">부채고개</li>
+          <li onclick="openPopup('대문산 이야기', '대문산 이야기의 정보입니다.')">대문산 이야기</li>
+          <li onclick="openPopup('목계솔밭', '목계솔밭의 정보입니다.')">목계솔밭</li>
+          <li onclick="openPopup('꼬꼬바위', '꼬꼬바위의 정보입니다.')">꼬꼬바위</li>
+          <li onclick="openPopup('검둥개', '검둥개의 정보입니다.')">검둥개</li>
+          <li onclick="openPopup('계명산', '계명산의 정보입니다.')">계명산</li>
+          <li onclick="openPopup('학바위', '학바위의 정보입니다.')">학바위</li>
+          <li onclick="openPopup('형제바위', '형제바위의 정보입니다.')">형제바위</li>
+          <li onclick="openPopup('장미산성 남매장수이야기', '장미산성 남매장수이야기의 정보입니다.')">장미산성 남매장수이야기</li>
+          <li onclick="openPopup('재오개 아기장수', '재오개 아기장수의 정보입니다.')">재오개 아기장수</li>
+          <li onclick="openPopup('마의태자와 덕주옹주', '마의태자와 덕주옹주의 정보입니다.')">마의태자와 덕주옹주</li>
+          <li onclick="openPopup('암소바위', '암소바위의 정보입니다.')">암소바위</li>
+          <li onclick="openPopup('남산성', '남산성의 정보입니다.')">남산성</li>
+          <li onclick="openPopup('광부처거리', '광부처거리의 정보입니다.')">광부처거리</li>
+          <li onclick="openPopup('달래강', '달래강의 정보입니다.')">달래강</li>
+          <li onclick="openPopup('천등산', '천등산의 정보입니다.')">천등산</li>
+          <li onclick="openPopup('부흥사 돌탑', '부흥사 돌탑의 정보입니다.')">부흥사 돌탑</li>
+          <li onclick="openPopup('법경대사 지등탑 비의 조성 설화', '법경대사 지등탑 비의 조성 설화 정보입니다.')">법경대사 지등탑 비의 조성 설화</li>
+          <li onclick="openPopup('탄금대에 오르면 가야금소리가 들려', '탄금대에 오르면 가야금소리가 들려의 정보입니다.')">탄금대에 오르면 가야금소리가 들려</li>
+          <li onclick="openPopup('따신 물 이야기', '따신 물 이갸기의 정보입니다.')">따신 물 이야기</li>
+          <li onclick="openPopup('허적과 도깨비', '허적과 도깨비의 정보입니다.')">허적과 도깨비</li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">인물</a>
+        <ul class="dropdown-content">
+          <li onclick="openPopup('소년 임경업과 이무기', '소년 임경업은 단월강에 나타나 마을 사람들을 괴롭히는 이무기를 무찌르기위해 3년간 무예를 갈고 닦는다. 이후 이무기를 불러내 마을 사람들과 힘을 합쳐 이무기를 물리치고 검을 얻는다는 이야기다.<hr><br>관련 도서: 안녕, 설화야 vol.1<br>관련 관광지:임충민공 충렬사(충청북도 충주시 단월동 385-1)<br> 이괄의 난을 진압해 큰 공을 세운 임경업 장군의 초상을 모신 사당이다. 충렬사는 인조 때 임경업 장군(1594~1646)의 위패를 모신 사당이다. 충신 열사를 추모하고 그 영혼을 기리기 위하여 세워졌다. 1679년 충민공 임경업을 모시기 위해 지어졌고, 임경업 장군의 영정이 모셔져 있다.')">소년 임경업과 이무기</li>
+          <li onclick="openPopup('탄금대에 오르면 가야금소리가 들려', '탄금대에 오르면 가야금소리가 들려의 정보입니다.')">탄금대에 오르면 가야금소리가 들려</li>
+          <li onclick="openPopup('마의태자와 덕주옹주', '마의태자와 덕주옹주의 정보입니다.')">마의태자와 덕주옹주</li>
+          <li onclick="openPopup('대문산 이야기', '대문산 이야기의 정보입니다.')">대문산 이야기</li>
+          <li onclick="openPopup('장미산성 남매장수이야기', '장미산성 남매장수이야기의 정보입니다.')">장미산성 남매장수이야기</li>
+          <li onclick="openPopup('재오개 아기장수', '재오개 아기장수의 정보입니다.')">재오개 아기장수</li>
+          <li onclick="openPopup('허적과 도깨비', '허적과 도깨비의 정보입니다.')">허적과 도깨비</li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">문화재</a>
+        <ul class="dropdown-content">
+          <li onclick="openPopup('쌍효각', '쌍효각의 정보입니다.')">쌍효각</li>
+          <li onclick="openPopup('남산성', '남산성의 정보입니다.')">남산성</li>
+          <li onclick="openPopup('부흥사 돌탑', '부흥사 돌탑의 정보입니다.')">부흥사 돌탑</li>
+          <li onclick="openPopup('법경대사 지등탑 비의 조성 설화', '법경대사 지등탑 비의 조성 설화 정보입니다.')">법경대사 지등탑 비의 조성 설화</li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">동물</a>
+        <ul class="dropdown-content">
+          <li onclick="openPopup('용이 사는 마을', '용이 사는 마을 정보입니다.')">용이 사는 마을</li>
+          <li onclick="openPopup('달천강 용과 얼룩소', '달천강 용과 얼룩소 정보입니다.')">달천강 용과 얼룩소</li>
+          <li onclick="openPopup('꼬꼬바위', '꼬꼬바위의 정보입니다.')">꼬꼬바위</li>
+          <li onclick="openPopup('범바위', '범바위의 정보입니다.')">범바위</li>
+          <li onclick="openPopup('암소바위', '암소바위의 정보입니다.')">암소바위</li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">도술</a>
+        <ul class="dropdown-content">
+          <li onclick="openPopup('돗가비', '돗가비의 정보입니다.')">돗가비</li>
+          <li onclick="openPopup('성벽에 핀 연꽃', '성벽에 핀 연꽃의 정보입니다.')">성벽에 핀 연꽃</li>
+          <li onclick="openPopup('학바위', '학바위의 정보입니다.')">학바위</li>
+          <li onclick="openPopup('형제바위', '형제바위의 정보입니다.')">형제바위</li>
+          <li onclick="openPopup('천등산', '천등산의 정보입니다.')">천등산</li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">장소[터전]</a>
+        <ul class="dropdown-content">
+          <li onclick="openPopup('검둥개', '검둥개의 정보입니다.')">검둥개</li>
+          <li onclick="openPopup('부채고개', '부채고개의 정보입니다.')">부채고개</li>
+          <li onclick="openPopup('광부처거리', '광부처거리의 정보입니다.')">광부처거리</li>
+          <li onclick="openPopup('달래강', '달래강의 정보입니다.')">달래강</li>
+          <li onclick="openPopup('소금호수의 전설', '소금호수의 전설 정보입니다.')">소금호수의 전설</li>
+          <li onclick="openPopup('목계솔밭', '목계솔밭의 정보입니다.')">목계솔밭</li>
+          <li onclick="openPopup('계명산', '계명산의 정보입니다.')">계명산</li>
+          <li onclick="openPopup('장자늪 이야기', '장자늪 이야기의 정보입니다.')">장자늪 이야기</li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+<footer>
+  <div class="organization">
+    <p>건국대 글로컬캠퍼스 문헌정보학과 캡스톤 프로젝트</p>
+    <p>협력 : 충주시 평생학습관 예성글패 & 제5세대 웹개발 프로젝트 | 문의: example@example.com</p>
+  </div>
+</footer>
+
+<script>
+
+</script>
 </body>
 </html>
