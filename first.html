@@ -24,25 +24,6 @@
     flex-direction: column;
   }
   
-  /* 헤더 스타일 */
-  .header {
-      position: absolute;
-      top: 24px;
-      left: 24px;
-      color: #2f855a;
-      font-size: 2rem;
-      font-weight: bold;
-      padding: 16px 24px;
-      position: absolute;
-      left: 420px;
-      top: 50px;
-  }
-  
-  .header h1 {
-    margin: 0;
-    font-size: 1.3rem;
-  }
-  
   /* 메뉴 스타일 */
   .menu {
     position: absolute;
@@ -157,10 +138,13 @@
   }
   .point {
     position: absolute;
-    width: 12px;
-    height: 12px;
+    width: 13px;
+    height: 13px;
     background-color: #2f855a;
     border-radius: 50%;
+  }
+  .point:hover {
+    background-color: red;
   }
   .hamburger {
     display: flex;
@@ -187,26 +171,126 @@
 .hamburger:hover div:nth-child(3) {
     width: 50%;
 }
+
+/* 모달 전체 스타일 */
+.modal {
+  display: flex;
+  visibility: hidden;
+  position: fixed;
+  z-index: 1002;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-100px);
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.modal.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-content.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+
+/* 닫기 버튼 스타일 */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
   </style>
 </head>
 <body>
 <div class="container">
-  <header class="header">
-    <h1>설화 속 충주, <br>지도에서 만나자!</h1>
-  </header>
   <main class="main-content">
-    <img src="abcdef.png" alt="충주 지도" class="map-image">
-    <div class="point" style="top: 20%; left: 30%;"></div>
-    <div class="point" style="top: 25%; left: 40%;"></div>
-    <div class="point" style="top: 30%; left: 45%;"></div>
-    <div class="point" style="top: 35%; left: 50%;"></div>
-    <div class="point" style="top: 40%; left: 55%;"></div>
-    <div class="point" style="top: 45%; left: 60%;"></div>
-    <div class="point" style="top: 50%; left: 70%;"></div>
-    <div class="point" style="top: 55%; left: 10%;"></div>
-    <div class="point" style="top: 60%; left: 15%;"></div>
-    <div class="point" style="top: 65%; left: 20%;"></div>
-    <div class="point" style="top: 70%; left: 25%;"></div>
+    <img src="map.png" alt="충주 지도" class="map-image">
+    <!-- -->
+    <div class="point" style="top: 27%; left: 52.5%;"></div>
+    <!-- -->
+    <div class="point" style="top: 30%; left: 52.2%;"></div>
+    <!-- -->
+    <div class="point" style="top: 31.3%; left: 50.5%;"></div>
+    <!-- -->
+    <div class="point" style="top: 33%; left: 49.6%;"></div>
+    <!-- -->
+    <div class="point" style="top: 32%; left: 63%;"></div>
+    <!-- -->
+    <div class="point" style="top: 53%; left: 43%;"></div>
+    <!--장자늪이야기-->
+    <div class="point" style="top: 35%; left: 49.5%;"></div>
+    <!-- -->
+    <div class="point" style="top: 37%; left: 48.3%;"></div>
+    <!-- -->
+    <div class="point" style="top: 37%; left: 54.3%;"></div>
+    <!-- -->
+    <div class="point" style="top: 42%; left: 64%;"></div>
+    <!-- -->
+    <div class="point" style="top: 28%; left: 39%;"></div>
+    <!-- -->
+    <div class="point" style="top: 51%; left: 37%;"></div>
+
+
+    <!--부채고개-->
+    <div class="point" style="top: 51%; left: 53.5%;"></div>
+    <!--돗가비-->
+    <div class="point" style="top: 46%; left: 51.6%;" onclick="openModal('돗가비')"></div>
+    <!-- -->
+    <div class="point" style="top: 51%; left: 51%;"></div>
+    <!-- -->
+    <div class="point" style="top: 53%; left: 56%;"></div>
+    <!-- -->
+    <div class="point" style="top: 53%; left: 59%;"></div>
+    <!-- -->
+    <div class="point" style="top: 55%; left: 55%;"></div>
+    <!--범바위-->
+    <div class="point" style="top: 58%; left: 55.3%;"></div>
+    <!-- -->
+    <div class="point" style="top: 58%; left: 50.7%;"></div>
+    <!-- -->
+    <div class="point" style="top: 60%; left: 51.3%;"></div>
+    <!--소년 임경업과 이무기-->
+    <div class="point" style="top: 59.3%; left: 51.6%;"></div>
+    <!-- -->
+    <div class="point" style="top: 57.5%; left: 57.5%;"></div>
+    <!-- -->
+    <div class="point" style="top: 57.7%; left: 57.4%;"></div>
+    <!-- -->
+    <div class="point" style="top: 58.5%; left: 57.8%;"></div>
+    <!-- -->
+    <div class="point" style="top: 72%; left: 63%;"></div>
+    <!-- -->
+    <div class="point" style="top: 80%; left: 59%;"></div>
+    <!-- -->
+    <div class="point" style="top: 85%; left: 67%;"></div>
   </main>
   <nav class="menu">
     <ul>
@@ -220,90 +304,90 @@
       <li class="dropdown">
         <a href="#">전체</a>
         <ul class="dropdown-content">
-          <li onclick="openPopup('소금호수의 전설', '소금호수의 전설 정보입니다.')">소금호수의 전설</li>
-          <li onclick="openPopup('돗가비', '돗가비의 정보입니다.')">돗가비</li>
-          <li onclick="openPopup('달천강 용과 얼룩소', '달천강 용과 얼룩소 정보입니다.')">달천강 용과 얼룩소</li>
-          <li onclick="openPopup('성벽에 핀 연꽃', '성벽에 핀 연꽃의 정보입니다.')">성벽에 핀 연꽃</li>
-          <li onclick="openPopup('쌍효각', '쌍효각의 정보입니다.')">쌍효각</li>
-          <li onclick="openPopup('소년 임경업과 이무기', '소년 임경업은 단월강에 나타나 마을 사람들을 괴롭히는 이무기를 무찌르기위해 3년간 무예를 갈고 닦는다. 이후 이무기를 불러내 마을 사람들과 힘을 합쳐 이무기를 물리치고 검을 얻는다는 이야기다.<hr><br>관련 도서: 안녕, 설화야 vol.1<br>관련 관광지:임충민공 충렬사(충청북도 충주시 단월동 385-1)<br> 이괄의 난을 진압해 큰 공을 세운 임경업 장군의 초상을 모신 사당이다. 충렬사는 인조 때 임경업 장군(1594~1646)의 위패를 모신 사당이다. 충신 열사를 추모하고 그 영혼을 기리기 위하여 세워졌다. 1679년 충민공 임경업을 모시기 위해 지어졌고, 임경업 장군의 영정이 모셔져 있다.')">소년 임경업과 이무기</li>
-          <li onclick="openPopup('용이 사는 마을', '용이 사는 마을 정보입니다.')">용이 사는 마을</li>
-          <li onclick="openPopup('범바위', '범바위의 정보입니다.')">범바위</li>
-          <li onclick="openPopup('장자늪 이야기', '장자늪 이야기의 정보입니다.')">장자늪 이야기</li>
-          <li onclick="openPopup('부채고개', '부채고개의 정보입니다.')">부채고개</li>
-          <li onclick="openPopup('대문산 이야기', '대문산 이야기의 정보입니다.')">대문산 이야기</li>
-          <li onclick="openPopup('목계솔밭', '목계솔밭의 정보입니다.')">목계솔밭</li>
-          <li onclick="openPopup('꼬꼬바위', '꼬꼬바위의 정보입니다.')">꼬꼬바위</li>
-          <li onclick="openPopup('검둥개', '검둥개의 정보입니다.')">검둥개</li>
-          <li onclick="openPopup('계명산', '계명산의 정보입니다.')">계명산</li>
-          <li onclick="openPopup('학바위', '학바위의 정보입니다.')">학바위</li>
-          <li onclick="openPopup('형제바위', '형제바위의 정보입니다.')">형제바위</li>
-          <li onclick="openPopup('장미산성 남매장수이야기', '장미산성 남매장수이야기의 정보입니다.')">장미산성 남매장수이야기</li>
-          <li onclick="openPopup('재오개 아기장수', '재오개 아기장수의 정보입니다.')">재오개 아기장수</li>
-          <li onclick="openPopup('마의태자와 덕주옹주', '마의태자와 덕주옹주의 정보입니다.')">마의태자와 덕주옹주</li>
-          <li onclick="openPopup('암소바위', '암소바위의 정보입니다.')">암소바위</li>
-          <li onclick="openPopup('남산성', '남산성의 정보입니다.')">남산성</li>
-          <li onclick="openPopup('광부처거리', '광부처거리의 정보입니다.')">광부처거리</li>
-          <li onclick="openPopup('달래강', '달래강의 정보입니다.')">달래강</li>
-          <li onclick="openPopup('천등산', '천등산의 정보입니다.')">천등산</li>
-          <li onclick="openPopup('부흥사 돌탑', '부흥사 돌탑의 정보입니다.')">부흥사 돌탑</li>
-          <li onclick="openPopup('법경대사 지등탑 비의 조성 설화', '법경대사 지등탑 비의 조성 설화 정보입니다.')">법경대사 지등탑 비의 조성 설화</li>
-          <li onclick="openPopup('탄금대에 오르면 가야금소리가 들려', '탄금대에 오르면 가야금소리가 들려의 정보입니다.')">탄금대에 오르면 가야금소리가 들려</li>
-          <li onclick="openPopup('따신 물 이야기', '따신 물 이갸기의 정보입니다.')">따신 물 이야기</li>
-          <li onclick="openPopup('허적과 도깨비', '허적과 도깨비의 정보입니다.')">허적과 도깨비</li>
+          <li onclick="openModal('소금호수의 전설')">소금호수의 전설</li>
+          <li onclick="openModal('돗가비', '돗가비의 정보입니다.')">돗가비</li>
+          <li onclick="openModal('달천강 용과 얼룩소', '달천강 용과 얼룩소 정보입니다.')">달천강 용과 얼룩소</li>
+          <li onclick="openModal('성벽에 핀 연꽃', '성벽에 핀 연꽃의 정보입니다.')">성벽에 핀 연꽃</li>
+          <li onclick="openModal('쌍효각', '쌍효각의 정보입니다.')">쌍효각</li>
+          <li onclick="openModal('소년 임경업과 이무기', '소년 임경업은 단월강에 나타나 마을 사람들을 괴롭히는 이무기를 무찌르기위해 3년간 무예를 갈고 닦는다. 이후 이무기를 불러내 마을 사람들과 힘을 합쳐 이무기를 물리치고 검을 얻는다는 이야기다.<hr><br>관련 도서: 안녕, 설화야 vol.1<br>관련 관광지:임충민공 충렬사(충청북도 충주시 단월동 385-1)<br> 이괄의 난을 진압해 큰 공을 세운 임경업 장군의 초상을 모신 사당이다. 충렬사는 인조 때 임경업 장군(1594~1646)의 위패를 모신 사당이다. 충신 열사를 추모하고 그 영혼을 기리기 위하여 세워졌다. 1679년 충민공 임경업을 모시기 위해 지어졌고, 임경업 장군의 영정이 모셔져 있다.')">소년 임경업과 이무기</li>
+          <li onclick="openModal('용이 사는 마을', '용이 사는 마을 정보입니다.')">용이 사는 마을</li>
+          <li onclick="openModal('범바위', '범바위의 정보입니다.')">범바위</li>
+          <li onclick="openModal('장자늪 이야기', '장자늪 이야기의 정보입니다.')">장자늪 이야기</li>
+          <li onclick="openModal('부채고개', '부채고개의 정보입니다.')">부채고개</li>
+          <li onclick="openModal('대문산 이야기', '대문산 이야기의 정보입니다.')">대문산 이야기</li>
+          <li onclick="openModal('목계솔밭', '목계솔밭의 정보입니다.')">목계솔밭</li>
+          <li onclick="openModal('꼬꼬바위', '꼬꼬바위의 정보입니다.')">꼬꼬바위</li>
+          <li onclick="openModal('검둥개', '검둥개의 정보입니다.')">검둥개</li>
+          <li onclick="openModal('계명산', '계명산의 정보입니다.')">계명산</li>
+          <li onclick="openModal('학바위', '학바위의 정보입니다.')">학바위</li>
+          <li onclick="openModal('형제바위', '형제바위의 정보입니다.')">형제바위</li>
+          <li onclick="openModal('장미산성 남매장수이야기', '장미산성 남매장수이야기의 정보입니다.')">장미산성 남매장수이야기</li>
+          <li onclick="openModal('재오개 아기장수', '재오개 아기장수의 정보입니다.')">재오개 아기장수</li>
+          <li onclick="openModal('마의태자와 덕주옹주', '마의태자와 덕주옹주의 정보입니다.')">마의태자와 덕주옹주</li>
+          <li onclick="openModal('암소바위', '암소바위의 정보입니다.')">암소바위</li>
+          <li onclick="openModal('남산성', '남산성의 정보입니다.')">남산성</li>
+          <li onclick="openModal('광부처거리', '광부처거리의 정보입니다.')">광부처거리</li>
+          <li onclick="openModal('달래강', '달래강의 정보입니다.')">달래강</li>
+          <li onclick="openModal('천등산', '천등산의 정보입니다.')">천등산</li>
+          <li onclick="openModal('부흥사 돌탑', '부흥사 돌탑의 정보입니다.')">부흥사 돌탑</li>
+          <li onclick="openModal('법경대사 지등탑 비의 조성 설화', '법경대사 지등탑 비의 조성 설화 정보입니다.')">법경대사 지등탑 비의 조성 설화</li>
+          <li onclick="openModal('탄금대에 오르면 가야금소리가 들려', '탄금대에 오르면 가야금소리가 들려의 정보입니다.')">탄금대에 오르면 가야금소리가 들려</li>
+          <li onclick="openModal('따신 물 이야기', '따신 물 이갸기의 정보입니다.')">따신 물 이야기</li>
+          <li onclick="openModal('허적과 도깨비', '허적과 도깨비의 정보입니다.')">허적과 도깨비</li>
         </ul>
       </li>
       <li class="dropdown">
         <a href="#">인물</a>
         <ul class="dropdown-content">
-          <li onclick="openPopup('소년 임경업과 이무기', '소년 임경업은 단월강에 나타나 마을 사람들을 괴롭히는 이무기를 무찌르기위해 3년간 무예를 갈고 닦는다. 이후 이무기를 불러내 마을 사람들과 힘을 합쳐 이무기를 물리치고 검을 얻는다는 이야기다.<hr><br>관련 도서: 안녕, 설화야 vol.1<br>관련 관광지:임충민공 충렬사(충청북도 충주시 단월동 385-1)<br> 이괄의 난을 진압해 큰 공을 세운 임경업 장군의 초상을 모신 사당이다. 충렬사는 인조 때 임경업 장군(1594~1646)의 위패를 모신 사당이다. 충신 열사를 추모하고 그 영혼을 기리기 위하여 세워졌다. 1679년 충민공 임경업을 모시기 위해 지어졌고, 임경업 장군의 영정이 모셔져 있다.')">소년 임경업과 이무기</li>
-          <li onclick="openPopup('탄금대에 오르면 가야금소리가 들려', '탄금대에 오르면 가야금소리가 들려의 정보입니다.')">탄금대에 오르면 가야금소리가 들려</li>
-          <li onclick="openPopup('마의태자와 덕주옹주', '마의태자와 덕주옹주의 정보입니다.')">마의태자와 덕주옹주</li>
-          <li onclick="openPopup('대문산 이야기', '대문산 이야기의 정보입니다.')">대문산 이야기</li>
-          <li onclick="openPopup('장미산성 남매장수이야기', '장미산성 남매장수이야기의 정보입니다.')">장미산성 남매장수이야기</li>
-          <li onclick="openPopup('재오개 아기장수', '재오개 아기장수의 정보입니다.')">재오개 아기장수</li>
-          <li onclick="openPopup('허적과 도깨비', '허적과 도깨비의 정보입니다.')">허적과 도깨비</li>
+          <li onclick="openModal('소년 임경업과 이무기', '소년 임경업은 단월강에 나타나 마을 사람들을 괴롭히는 이무기를 무찌르기위해 3년간 무예를 갈고 닦는다. 이후 이무기를 불러내 마을 사람들과 힘을 합쳐 이무기를 물리치고 검을 얻는다는 이야기다.<hr><br>관련 도서: 안녕, 설화야 vol.1<br>관련 관광지:임충민공 충렬사(충청북도 충주시 단월동 385-1)<br> 이괄의 난을 진압해 큰 공을 세운 임경업 장군의 초상을 모신 사당이다. 충렬사는 인조 때 임경업 장군(1594~1646)의 위패를 모신 사당이다. 충신 열사를 추모하고 그 영혼을 기리기 위하여 세워졌다. 1679년 충민공 임경업을 모시기 위해 지어졌고, 임경업 장군의 영정이 모셔져 있다.')">소년 임경업과 이무기</li>
+          <li onclick="openModal('탄금대에 오르면 가야금소리가 들려', '탄금대에 오르면 가야금소리가 들려의 정보입니다.')">탄금대에 오르면 가야금소리가 들려</li>
+          <li onclick="openModal('마의태자와 덕주옹주', '마의태자와 덕주옹주의 정보입니다.')">마의태자와 덕주옹주</li>
+          <li onclick="openModal('대문산 이야기', '대문산 이야기의 정보입니다.')">대문산 이야기</li>
+          <li onclick="openModal('장미산성 남매장수이야기', '장미산성 남매장수이야기의 정보입니다.')">장미산성 남매장수이야기</li>
+          <li onclick="openModal('재오개 아기장수', '재오개 아기장수의 정보입니다.')">재오개 아기장수</li>
+          <li onclick="openModal('허적과 도깨비', '허적과 도깨비의 정보입니다.')">허적과 도깨비</li>
         </ul>
       </li>
       <li class="dropdown">
         <a href="#">문화재</a>
         <ul class="dropdown-content">
-          <li onclick="openPopup('쌍효각', '쌍효각의 정보입니다.')">쌍효각</li>
-          <li onclick="openPopup('남산성', '남산성의 정보입니다.')">남산성</li>
-          <li onclick="openPopup('부흥사 돌탑', '부흥사 돌탑의 정보입니다.')">부흥사 돌탑</li>
-          <li onclick="openPopup('법경대사 지등탑 비의 조성 설화', '법경대사 지등탑 비의 조성 설화 정보입니다.')">법경대사 지등탑 비의 조성 설화</li>
+          <li onclick="openModal('쌍효각', '쌍효각의 정보입니다.')">쌍효각</li>
+          <li onclick="openModal('남산성', '남산성의 정보입니다.')">남산성</li>
+          <li onclick="openModal('부흥사 돌탑', '부흥사 돌탑의 정보입니다.')">부흥사 돌탑</li>
+          <li onclick="openModal('법경대사 지등탑 비의 조성 설화', '법경대사 지등탑 비의 조성 설화 정보입니다.')">법경대사 지등탑 비의 조성 설화</li>
         </ul>
       </li>
       <li class="dropdown">
         <a href="#">동물</a>
         <ul class="dropdown-content">
-          <li onclick="openPopup('용이 사는 마을', '용이 사는 마을 정보입니다.')">용이 사는 마을</li>
-          <li onclick="openPopup('달천강 용과 얼룩소', '달천강 용과 얼룩소 정보입니다.')">달천강 용과 얼룩소</li>
-          <li onclick="openPopup('꼬꼬바위', '꼬꼬바위의 정보입니다.')">꼬꼬바위</li>
-          <li onclick="openPopup('범바위', '범바위의 정보입니다.')">범바위</li>
-          <li onclick="openPopup('암소바위', '암소바위의 정보입니다.')">암소바위</li>
+          <li onclick="openModal('용이 사는 마을', '용이 사는 마을 정보입니다.')">용이 사는 마을</li>
+          <li onclick="openModal('달천강 용과 얼룩소', '달천강 용과 얼룩소 정보입니다.')">달천강 용과 얼룩소</li>
+          <li onclick="openModal('꼬꼬바위', '꼬꼬바위의 정보입니다.')">꼬꼬바위</li>
+          <li onclick="openModal('범바위', '범바위의 정보입니다.')">범바위</li>
+          <li onclick="openModal('암소바위', '암소바위의 정보입니다.')">암소바위</li>
         </ul>
       </li>
       <li class="dropdown">
         <a href="#">도술</a>
         <ul class="dropdown-content">
-          <li onclick="openPopup('돗가비', '돗가비의 정보입니다.')">돗가비</li>
-          <li onclick="openPopup('성벽에 핀 연꽃', '성벽에 핀 연꽃의 정보입니다.')">성벽에 핀 연꽃</li>
-          <li onclick="openPopup('학바위', '학바위의 정보입니다.')">학바위</li>
-          <li onclick="openPopup('형제바위', '형제바위의 정보입니다.')">형제바위</li>
-          <li onclick="openPopup('천등산', '천등산의 정보입니다.')">천등산</li>
+          <li onclick="openModal('돗가비', '돗가비의 정보입니다.')">돗가비</li>
+          <li onclick="openModal('성벽에 핀 연꽃', '성벽에 핀 연꽃의 정보입니다.')">성벽에 핀 연꽃</li>
+          <li onclick="openModal('학바위', '학바위의 정보입니다.')">학바위</li>
+          <li onclick="openModal('형제바위', '형제바위의 정보입니다.')">형제바위</li>
+          <li onclick="openModal('천등산', '천등산의 정보입니다.')">천등산</li>
         </ul>
       </li>
       <li class="dropdown">
         <a href="#">장소[터전]</a>
         <ul class="dropdown-content">
-          <li onclick="openPopup('검둥개', '검둥개의 정보입니다.')">검둥개</li>
-          <li onclick="openPopup('부채고개', '부채고개의 정보입니다.')">부채고개</li>
-          <li onclick="openPopup('광부처거리', '광부처거리의 정보입니다.')">광부처거리</li>
-          <li onclick="openPopup('달래강', '달래강의 정보입니다.')">달래강</li>
-          <li onclick="openPopup('소금호수의 전설', '소금호수의 전설 정보입니다.')">소금호수의 전설</li>
-          <li onclick="openPopup('목계솔밭', '목계솔밭의 정보입니다.')">목계솔밭</li>
-          <li onclick="openPopup('계명산', '계명산의 정보입니다.')">계명산</li>
-          <li onclick="openPopup('장자늪 이야기', '장자늪 이야기의 정보입니다.')">장자늪 이야기</li>
+          <li onclick="openModal('검둥개', '검둥개의 정보입니다.')">검둥개</li>
+          <li onclick="openModal('부채고개', '부채고개의 정보입니다.')">부채고개</li>
+          <li onclick="openModal('광부처거리', '광부처거리의 정보입니다.')">광부처거리</li>
+          <li onclick="openModal('달래강', '달래강의 정보입니다.')">달래강</li>
+          <li onclick="openModal('소금호수의 전설', '소금호수의 전설 정보입니다.')">소금호수의 전설</li>
+          <li onclick="openModal('목계솔밭', '목계솔밭의 정보입니다.')">목계솔밭</li>
+          <li onclick="openModal('계명산', '계명산의 정보입니다.')">계명산</li>
+          <li onclick="openModal('장자늪 이야기', '장자늪 이야기의 정보입니다.')">장자늪 이야기</li>
         </ul>
       </li>
     </ul>
@@ -317,7 +401,75 @@
   </div>
 </footer>
 
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2 id="modalTitle">Modal Title</h2>
+    <p id="modalDescription">Modal Description</p>
+  </div>
+</div>
+
 <script>
+// 모달 요소 선택
+var modal = document.getElementById("myModal");
+var span = document.getElementsByClassName("close")[0];
+
+// 모달을 열어 주는 함수
+function openModal(key) {
+  if (modalContents[key]) {
+    const { title, description } = modalContents[key];
+    document.getElementById('modalTitle').innerText = title;
+    document.getElementById('modalDescription').innerText = description;
+    modal.classList.add('show');
+    document.querySelector('.modal-content').classList.add('show');
+  } else {
+    console.error('No data available for key:', key);
+  }
+}
+function openDiskModal(key) {
+  const content = modalContents[key];
+  if (content) {
+    document.getElementById('modalTitle').innerText = content.title;
+    document.getElementById('modalLocation').innerText = content.location;
+    document.getElementById('modalDescription').innerText = content.description;
+    modal.classList.add('show');
+    document.querySelector('.modal-content').classList.add('show');
+  } else {
+    console.error('No data found for:', key);
+  }
+}
+
+span.onclick = function() {
+  modal.classList.remove('show');
+  document.querySelector('.modal-content').classList.remove('show');
+}
+
+window.onclick = function(event) {
+  if (event.target === modal) {
+    modal.classList.remove('show');
+    document.querySelector('.modal-content').classList.remove('show');
+  }
+}
+
+
+const modalContents = {
+  '소금호수의 전설': {
+    title: '소금호수의 전설',
+    location: '교현동, 안림동',
+    description: '한 여름밤, 어림마을 호숫가에 물이 그득. 아침이면, 피 한 방울 남지 않은 동물과 사람 사체들이 발견되는 거야. 어느날 밤 소금장수 하나가 무사히 호수를 지나게 되고, 이를 안 사또가 사람들에게 명을 내려. 다음 날 엄청난 양의 소금을 호수에 들이붓자 커다란 지렁이 괴물이 죽어서 호숫가에 떠오르지. 그리고 어림마을엔 다시금 평화가 찾아왔어. '
+  },
+  '돗가비': {
+    title: '돗가비',
+    location: '금가면 유송리 65-5',
+    description: '신라 혜공왕 2년, 연이은 홍수로 살 길이 막막해진 반송마을 주민들은 김생사로 찾아가 김생스님께 하소연을 하지. 이에 김생스님은 사람들을 돕기 위해, 도술을 부리기로 마음 먹어. 그날 밤 김생스님은 도깨비를 소환하여 하룻밤 새에 김생제방을 뚝딱하고 완성했어. 지금의 김생제방은 충주 조정지댐으로 인해 수장이 되었으나, 수위가 얕아지면 제방의 흔적인 돌무더기가 보이기도 해. '
+  },
+  '달천강 용과 얼룩소': {
+    title: '달천강 용과 얼룩소',
+    location: '엄정면',
+    description: '충주 달천마을에는 집마다 소를 들판에 매어 놓고 풀을 길러 먹었데, 어느 날 욕심 많은 재봉이가 장날에 검정 얼룩소를 팔러 나왔다. 그러자 하늘에서 소나기가 쏟아지면서 소의 얼룩이 사라졌는데, 이것은 재봉이가 착한 희순이네 소를 몰래 훔치고 검정 물감을 칠해 자기 소처럼 팔러 나온건데 이 모습을 지켜보던 달천강 용이 괴씸한 재봉이에게 소나기를 내려버린 것이다.'
+  },
+  
+};
 
 </script>
 </body>
