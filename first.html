@@ -142,6 +142,7 @@
     height: 13px;
     background-color: #2f855a;
     border-radius: 50%;
+    cursor: pointer;
   }
   .point:hover {
     background-color: red;
@@ -233,64 +234,64 @@
 <div class="container">
   <main class="main-content">
     <img src="map.png" alt="충주 지도" class="map-image">
-    <!-- -->
-    <div class="point" style="top: 27%; left: 52.5%;"></div>
-    <!-- -->
-    <div class="point" style="top: 30%; left: 52.2%;"></div>
-    <!-- -->
-    <div class="point" style="top: 31.3%; left: 50.5%;"></div>
-    <!-- -->
-    <div class="point" style="top: 33%; left: 49.6%;"></div>
-    <!-- -->
-    <div class="point" style="top: 32%; left: 63%;"></div>
-    <!-- -->
-    <div class="point" style="top: 53%; left: 43%;"></div>
+    <!--허적과 도깨비-->
+    <div class="point" style="top: 26%; left: 52.5%;" onclick="openModal('허적과 도깨비', '허적과 도깨비의 정보입니다.')">허적</div>
+    <!--검둥개-->
+    <div class="point" style="top: 30%; left: 52.2%;" onclick="openModal('검둥개', '검둥개의 정보입니다.')">검둥개</div>
+    <!--부흥사 돌탑-->
+    <div class="point" style="top: 31.3%; left: 50.5%;" onclick="openModal('부흥사 돌탑', '부흥사 돌탑의 정보입니다.')">부흥사</div>
+    <!--목계솔밭-->
+    <div class="point" style="top: 33%; left: 49.6%;" onclick="openModal('목계솔밭', '목계솔밭의 정보입니다.')">복계솔밭</div>
+    <!--천등산-->
+    <div class="point" style="top: 32%; left: 63%;" onclick="openModal('천등산', '천등산의 정보입니다.')">천등산</div>
+    <!--꼬꼬바위-->
+    <div class="point" style="top: 53%; left: 43%;" onclick="openModal('꼬꼬바위', '꼬꼬바위의 정보입니다.')">꼬꼬바위</div>
     <!--장자늪이야기-->
-    <div class="point" style="top: 35%; left: 49.5%;"></div>
-    <!-- -->
-    <div class="point" style="top: 37%; left: 48.3%;"></div>
-    <!-- -->
-    <div class="point" style="top: 37%; left: 54.3%;"></div>
-    <!-- -->
-    <div class="point" style="top: 42%; left: 64%;"></div>
-    <!-- -->
-    <div class="point" style="top: 28%; left: 39%;"></div>
-    <!-- -->
-    <div class="point" style="top: 51%; left: 37%;"></div>
+    <div class="point" style="top: 35%; left: 49.5%;" onclick="openModal('장자늪 이야기', '장자늪 이야기의 정보입니다.')">장자늪</div>
+    <!--장미산성 남매장수이야기-->
+    <div class="point" style="top: 37%; left: 48.3%;" onclick="openModal('장미산성 남매장수이야기', '장미산성 남매장수이야기의 정보입니다.')">장미산성</div>
+    <!--쌍효각-->
+    <div class="point" style="top: 37%; left: 54.3%;" onclick="openModal('쌍효각', '쌍효각의 정보입니다.')">쌍효각</div>
+    <!--법경대사 지등탑 비의 조성 설화-->
+    <div class="point" style="top: 42%; left: 64%;" onclick="openModal('법경대사 지등탑 비의 조성 설화', '법경대사 지등탑 비의 조성 설화 정보입니다.')">법경대사</div>
+    <!--학바위-->
+    <div class="point" style="top: 28%; left: 39%;" onclick="openModal('학바위', '학바위의 정보입니다.')">학바위</div>
+    <!--형제바위-->
+    <div class="point" style="top: 51%; left: 37%;" onclick="openModal('형제바위', '형제바위의 정보입니다.')">형제바위</div>
 
 
-    <!--부채고개-->
-    <div class="point" style="top: 51%; left: 53.5%;"></div>
-    <!--돗가비-->
-    <div class="point" style="top: 46%; left: 51.6%;" onclick="openModal('돗가비')"></div>
-    <!-- -->
-    <div class="point" style="top: 51%; left: 51%;"></div>
-    <!-- -->
-    <div class="point" style="top: 53%; left: 56%;"></div>
-    <!-- -->
-    <div class="point" style="top: 53%; left: 59%;"></div>
-    <!-- -->
-    <div class="point" style="top: 55%; left: 55%;"></div>
+    <!--부채고개 *중심*-->
+    <div class="point" style="top: 51%; left: 53.5%;" onclick="openModal('부채고개', '부채고개의 정보입니다.')">부채고개</div>
+    <!--돗가비, 대문산이야기-->
+    <div class="point" style="top: 46%; left: 51.6%;">돗가비</div>
+    <!--탄금대에 오르면 가야금 소리가 들려-->
+    <div class="point" style="top: 51%; left: 51%;" onclick="openModal('탄금대에 오르면 가야금소리가 들려', '탄금대에 오르면 가야금소리가 들려의 정보입니다.')">탄금대</div>
+    <!--소금호수의 전설-->
+    <div class="point" style="top: 53%; left: 56%;" onclick="openModal('소금호수의 전설')">소금호수</div>
+    <!--계명산-->
+    <div class="point" style="top: 53%; left: 59%;" onclick="openModal('계명산', '계명산의 정보입니다.')">계명산</div>
+    <!--광부처거리, 용이 사는 마을-->
+    <div class="point" style="top: 55%; left: 55%;">광부처거리, 용사말</div>
     <!--범바위-->
-    <div class="point" style="top: 58%; left: 55.3%;"></div>
-    <!-- -->
-    <div class="point" style="top: 58%; left: 50.7%;"></div>
-    <!-- -->
-    <div class="point" style="top: 60%; left: 51.3%;"></div>
+    <div class="point" style="top: 58%; left: 55.3%;" onclick="openModal('범바위', '범바위의 정보입니다.')">범바위</div>
+    <!--달천강 용과 얼룩소-->
+    <div class="point" style="top: 58%; left: 50.7%;" onclick="openModal('달천강 용과 얼룩소', '달천강 용과 얼룩소 정보입니다.')">달천강 용</div>
+    <!--달래강-->
+    <div class="point" style="top: 60%; left: 51.3%;" onclick="openModal('달래강', '달래강의 정보입니다.')">달래강</div>
     <!--소년 임경업과 이무기-->
-    <div class="point" style="top: 59.3%; left: 51.6%;"></div>
-    <!-- -->
-    <div class="point" style="top: 57.5%; left: 57.5%;"></div>
-    <!-- -->
-    <div class="point" style="top: 57.7%; left: 57.4%;"></div>
-    <!-- -->
-    <div class="point" style="top: 58.5%; left: 57.8%;"></div>
-    <!-- -->
-    <div class="point" style="top: 72%; left: 63%;"></div>
-    <!-- -->
-    <div class="point" style="top: 80%; left: 59%;"></div>
-    <!-- -->
-    <div class="point" style="top: 85%; left: 67%;"></div>
+    <div class="point" style="top: 59%; left: 52%;" onclick="openModal('소년 임경업과 이무기')">임경업</div>
+    <!--남산성-->
+    <div class="point" style="top: 57%; left: 57.7%;" onclick="openModal('남산성', '남산성의 정보입니다.')">남산성</div>
+    <!--성벽에 핀 연꽃-->
+    <div class="point" style="top: 57.7%; left: 57.2%;" onclick="openModal('성벽에 핀 연꽃', '성벽에 핀 연꽃의 정보입니다.')">연꽃</div>
+    <!--재오개 아기장수-->
+    <div class="point" style="top: 58.5%; left: 57.8%;" onclick="openModal('재오개 아기장수', '재오개 아기장수의 정보입니다.')">재오개</div>
+    <!--암소바위-->
+    <div class="point" style="top: 72%; left: 63%;" onclick="openModal('암소바위', '암소바위의 정보입니다.')">암소바위</div>
+    <!--따신 물 이야기-->
+    <div class="point" style="top: 80%; left: 59%;" onclick="openModal('따신 물 이야기', '따신 물 이갸기의 정보입니다.')">따신 물</div>
+    <!--마의태자와 덕주옹주-->
+    <div class="point" style="top: 85%; left: 67%;" onclick="openModal('마의태자와 덕주옹주', '마의태자와 덕주옹주의 정보입니다.')">마의태자</div>
   </main>
   <nav class="menu">
     <ul>
@@ -438,6 +439,7 @@ function openDiskModal(key) {
     console.error('No data found for:', key);
   }
 }
+
 
 span.onclick = function() {
   modal.classList.remove('show');
